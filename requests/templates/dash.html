@@ -23,5 +23,17 @@
             </p>
           </div>
         </div>
+
+        <h3>
+            Feature Requests <a href="#" class="btn btn-xs btn-primary">Add new...</a>
+        </h3>
+        <div class="list-group">
+            {% for item in requests %}
+                <a href="{% url 'view' item.id %}" class="list-group-item">
+                    {{ item.title }}
+                    <span class="badge">{{ item.client.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
