@@ -29,3 +29,6 @@ class FeatureRequest(models.Model):
     target_date = models.DateField(default=datetime.date.today)
     ticket_url = models.URLField()
     product_area = models.CharField(default='U', choices=PRODUCT_AREAS, max_length=3)
+
+    def __unicode__(self):
+        return "Feature Request {}".format(self.id)
