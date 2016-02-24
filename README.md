@@ -1,40 +1,29 @@
-# Heroku Django Starter Template
-
-An utterly fantastic project starter template for Django 1.9.
+# Feature Request App
 
 ## Features
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise
+- Creating and editing requests
+- Priorities reshuffle existing requests
 
 ## How to Use
 
 To use this project, follow these steps:
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+1. Install Python 2.7
+2. Clone the repository
+3. Install requirements (`$ mana.p install -r requirements.txt`)
+4. Run the project locally via (`$ manage.py runserver`)
+5. Load in the initial data via (`$ manage.py migrate`)
+5. Access [locally](http://localhost:8000)
 
-## Creating Your Project
+## How To Use Heroku [For a demo of Heroku deployment, click here](https://sheltered-cliffs-66207.herokuapp.com/)
 
-Using this template to create a new Django app is easy::
-
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
-
-You can replace ``helloworld`` with your desired project name.
-
-## Deployment to Heroku
-
-    $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
-    $ heroku create
-    $ git push heroku master
-
-    $ heroku run python manage.py migrate
-
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
+1. Install and setup Heroku Deployment Tools
+2. Clone the repository
+3. Inside the repository setup heroku via (`$ heroku create`) - This should add 'heroku' remote to local repository
+4. Push your code to your heroku instance (`$ git push heroku master`)
+5. Load in the initial data via (`$ heroku run python manage.py`)
+6. Access URL (hint: run `$ heroku open` to get the URL)
 
 ## Further Reading
 
