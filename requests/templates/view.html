@@ -1,9 +1,62 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block title %}
     Show all requests
 {% endblock %}
 
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script>
+      $(function() {
+        $( ".datepicker" ).datepicker({
+          changeMonth: true,
+          changeYear: true,
+          yearRange: "2014:2020",
+          dateFormat: "yy-mm-dd"
+        });
+      });
+    </script>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
 {% block content %}
-    Viewing request {{ request }}
+    <div class="container">
+        <h3>Viewing request {{ request.id }}</h3>
+
+        {% if updated %}
+            <div class="alert alert-success">
+                <strong>Saved</strong> - Record successfully updated
+            </div>
+        {% endif %}
+
+        {% comment %}
+            Bootstrapped the Django Form
+        {% endcomment %}
+
+        <form action="{% url 'view' request.id %}" method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {% for field in form.visible_fields %}
+                <div class="control-group {{ field.html_name }} {% if field.errors %}error{% endif %}">
+                    <label class="control-label">{{ field.label }}{% if field.field.required %} *{% endif %}</label>
+                    <div class="controls">
+                        {{ field }}
+                        {% if field.errors %}<span class="help-inline">{{ field.errors.as_text }}</span>{% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <br>
+
+            <div class="form-actions">
+                <input class="btn btn-primary btn-sm" type="submit" value="Update" />
+                <a class="btn btn-warning btn-sm" href="#"> Delete</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}
