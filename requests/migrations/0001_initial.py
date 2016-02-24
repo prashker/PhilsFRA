@@ -10,7 +10,7 @@ from django.core.management import call_command
 
 class Migration(migrations.Migration):
 
-    def load_my_initial_data(self):
+    def load_my_initial_data(self, o):
         call_command("loaddata", "initial_users.json")
 
     initial = True
