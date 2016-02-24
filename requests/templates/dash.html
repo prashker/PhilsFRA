@@ -25,13 +25,13 @@
         </div>
 
         <h3>
-            Feature Requests <a href="#" class="btn btn-xs btn-primary">Add new...</a>
+            Feature Requests <a href="{% url 'create' %}" class="btn btn-xs btn-primary">Add new...</a>
         </h3>
         <div class="list-group">
             {% for item in requests %}
                 <a href="{% url 'view' item.id %}" class="list-group-item">
                     {{ item.title }}
-                    <span class="badge">{{ item.client.name }}</span>
+                    <span class="badge">{{ item.client.name }} - Priority {{ item.priority }}</span>
                 </a>
             {% endfor %}
         </div>

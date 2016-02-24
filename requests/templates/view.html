@@ -3,7 +3,7 @@
 
 
 {% block title %}
-    Show all requests
+    Request - Detail
 {% endblock %}
 
 {% block js %}
@@ -26,7 +26,6 @@
 
 {% block content %}
     <div class="container">
-        <h3>Viewing request {{ request.id }}</h3>
 
         {% if updated %}
             <div class="alert alert-success">
@@ -38,7 +37,13 @@
             Bootstrapped the Django Form
         {% endcomment %}
 
-        <form action="{% url 'view' request.id %}" method="post">
+        {% if request.id %}
+            <h3>Viewing request {{ request.id }}</h3>
+            <form action="{% url 'view' request.id %}" method="post">
+        {% else %}
+            <h3>New feature request {{ request.id }}</h3>
+            <form action="{% url 'create' %}" method="post">
+        {% endif %}
             {% csrf_token %}
             {{ form.media }}
             {% for field in form.visible_fields %}
@@ -55,7 +60,6 @@
 
             <div class="form-actions">
                 <input class="btn btn-primary btn-sm" type="submit" value="Update" />
-                <a class="btn btn-warning btn-sm" href="#"> Delete</a>
             </div>
         </form>
     </div>
