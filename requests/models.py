@@ -13,7 +13,9 @@ class Client(models.Model):
 
 class FeatureRequest(models.Model):
 
+    # Codes can be up to 3 letters (per product_area limit)
     PRODUCT_AREAS = (
+        ('U', 'Unassigned'),
         ('P', 'Policies'),
         ('B', 'Billing'),
         ('C', 'Claims'),
@@ -26,3 +28,4 @@ class FeatureRequest(models.Model):
     priority = models.BigIntegerField()
     target_date = models.DateField(default=datetime.date.today)
     ticket_url = models.URLField()
+    product_area = models.CharField(default='U', choices=PRODUCT_AREAS, max_length=3)
